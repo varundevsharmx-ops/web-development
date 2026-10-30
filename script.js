@@ -1,73 +1,49 @@
 
-// ===== WELCOME MESSAGE =====
+// Update footer year
+const year = document.getElementById("year");
 
-console.log("Welcome to Varun Dev's Web Development Projects!");
-
-// ===== CURRENT YEAR IN FOOTER =====
-
-const footer = document.querySelector("footer p");
-
-if (footer) {
-    footer.innerHTML = `Created by Varun Dev | ${new Date().getFullYear()}`;
+if (year) {
+    year.textContent = new Date().getFullYear();
 }
 
-// ===== PROJECT CARD INTERACTION =====
+// Make the Calculator project card clickable
+document.querySelectorAll(".project-card").forEach((card) => {
+    const heading = card.querySelector("h3");
 
-const projectCards = document.querySelectorAll(".project-card");
+    if (heading && heading.textContent.trim() === "Calculator") {
+        card.style.cursor = "pointer";
 
-projectCards.forEach((card) => {
-
-    card.addEventListener("click", () => {
-
-        const projectName = card.querySelector("h3").textContent;
-
-        alert("You selected: " + projectName);
-
-    });
-
+        card.addEventListener("click", () => {
+            window.location.href = "./calculator/";
+        });
+    }
 });
 
-// ===== WELCOME ANIMATION =====
-
+// Intro animation
 const intro = document.querySelector(".intro");
 
 if (intro) {
     intro.style.opacity = "0";
+    intro.style.transition = "opacity 1s ease";
 
     setTimeout(() => {
-        intro.style.transition = "opacity 1s ease";
         intro.style.opacity = "1";
-    }, 200);
+    }, 100);
 }
 
-// ===== BACK TO TOP BUTTON =====
-
+// Back to Top button
 const topButton = document.createElement("button");
 
 topButton.textContent = "↑ Back to Top";
-
 topButton.id = "backToTop";
 
-topButton.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 18px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    display: none;
-    z-index: 1000;
-`;
+topButton.style.position = "fixed";
+topButton.style.bottom = "20px";
+topButton.style.right = "20px";
+topButton.style.padding = "12px 18px";
+topButton.style.cursor = "pointer";
 
 document.body.appendChild(topButton);
-
-window.addEventListener("scroll", () => {
-    topButton.style.display =
-        window.scrollY > 300 ? "block" : "none";
-});
 
 topButton.addEventListener("click", () => {
     window.scrollTo({
